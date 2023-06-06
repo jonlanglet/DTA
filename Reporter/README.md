@@ -12,3 +12,4 @@ We used the Barefoot SDE 9.xx during development and evaluation.
 1. Launch the compiled pipeline on the Tofino ASIC
 2. Configure the ports
 3. Launch the on-switch CPU component `$SDE/run_bfshell.sh -b <script> -i` (replace `<script>` with the path to [switch_cpu.py](switch_cpu.py), e.g., `~/projects/dta/reporter/switch_cpu.py`)
+4. Send traffic through the reporter to generate DTA reports. For example, you can use the [pktgen.py](pktgen.py)
