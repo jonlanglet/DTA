@@ -60,6 +60,6 @@ As previously mentioned, DTA consists of several components. You will at a minim
 
 1. Essential: Compile and install the DTA [Translator/](Translator/).
 2. Essential: Compile and install the DTA [Collector/](Collector/).
-3. Recommended: Compile and install the DTA [Generator/](Generator/).
-4. Recommended: Compile and install the DTA [Manager/](Manager/).
+3. Recommended: Set up the [Generator/](Generator/).
+4. Recommended: Set up the [Manager/](Manager/).
 5. Optional: Compile and install the DTA [Reporter/](Reporter/).
