@@ -1,4 +1,6 @@
 # DirectTelemetryAccess
+![Overview](Overview.png)
+
 This repository contains the code and helpful guides to set up an environment with Direct Telemetry Access.
 
 See the sub-folders for details about setting up the various components.
