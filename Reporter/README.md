@@ -1,4 +1,4 @@
-# DTA Reporter
+# DTA - Reporter
 This directory contains code for the Reporter component of DTA.
 
 ## Prerequisites

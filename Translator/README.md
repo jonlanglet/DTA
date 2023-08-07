@@ -1,4 +1,4 @@
-# DTA Translator
+# DTA - Translator
 This directory contains code for the Translator component of DTA.
 
 ## Prerequisites

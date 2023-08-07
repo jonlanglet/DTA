@@ -1,4 +1,4 @@
-# DirectTelemetryAccess - Generator
+# DTA - Generator
 
 We used TRex for traffic generation.
 TRex either send traffic towards the reporter (so that the reporter generates DTA telemetry reports from user traffic), or to directly generate DTA reports going to the translator (which statefully translates these into RDMA going to the collector).

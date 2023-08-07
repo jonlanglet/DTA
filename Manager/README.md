@@ -1,4 +1,4 @@
-# Direct Telemetry Access (DTA) - Manager
+# DTA - Manager
 This directory contains code for the Direct Telemetry Access manager.
 
 The manager is a central computer who is in charge of setting up, configuring, and running the tests.

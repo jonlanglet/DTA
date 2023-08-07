@@ -1,4 +1,4 @@
-# DirectTelemetryAccess
+# Direct Telemetry Access (DTA)
 ![Overview](Overview.png)
 
 This repository contains the code for Direct Telemetry Access.
