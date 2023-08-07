@@ -5,10 +5,13 @@ The manager is a central computer who is in charge of setting up, configuring, a
 This is meant to automate and simplify running DTA tests, and can be used as a guide on how the components are set up to work together
 
 ## Configuration
-TODO
+At the moment, the management scripts contain a lot of hard-coded hostnames, paths, etc.
+Please iterate over the scripts and update these to match your testbed.
 
-Update IPs, interfaces, hostnames, and paths in the scripts.
-Make this into configuration-files or similar.
+TODO: simplify by making this into a configuration file.
 
 ## Usage
-Run `./Manager.py` and use the provided menu to set up and test DTA
+You interact with the manager through a simple CLI menu.
+Please just launch the manager on a machine (with connectivity to the machines in the testbed) through `./Manager.py`, and use the menu to set up and test DTA.
+
+TODO: write a guide of example meny actions, and expected outputs. Also explain how they can manually start the collector if they want to inspect the data structures.
