@@ -40,24 +40,25 @@ To produce the results from the paper, we had a testbed configured as follows:
 
 ![Testbed](Testbed.png)
 
-## HowTo
+## Initial setup
+**The initial set up of DTA can be cumbersome.**
+Please try to follow these steps best you can, and reach out to me (Jonatan) if the guides prove insufficient.
 
 ### RDMA setup on the collector server
 A working RDMA environment at the collector-server is essential for DTA.
 
-1. Make sure that your NIC supports RDMA through RoCEv2. 
-We used the NVIDIA Bluefield-2 DPU, and we can not guarantee success with other network cards. However, other RoCEv2-capable network cards where you can disable iCRC verification might work just as well.
-
-2. Install and configure the necessary software and drivers.
-
-3. Verify that the RDMA setup is valid. This can be done by connecting two servers together with RDMA-capable NICs for example through the `ib_send_bw` command.
+1. Make sure that your NIC supports RDMA through RoCEv2. We used the NVIDIA Bluefield-2 DPU, and we can not guarantee success with other network cards. However, other RoCEv2-capable network cards where you can disable iCRC verification might work just as well.
+2. Install and configure the necessary software and drivers for RDMA workloads, following guides provided by the NIC manufacturer.
+3. Verify that the RDMA setup is valid. This can be done by connecting two servers together with RDMA-capable NICs for example through `ib_send_bw`.
 
 ### Tofino setup
-Our DTA prototype is written for the Tofino-1 ASIC, specifically SDE version 9.7. Newer SDE versions are likely to work as well (possibly with minor tweaks to DTA)
+Our DTA prototype is written for the Tofino-1 ASIC, specifically SDE version 9.7. Newer SDE versions are likely to work as well (possibly with minor tweaks to the translator code)
 
 1. Install the SDE and BSP according to the official documentation.
-
 2. Verify that you can compile and launch P4 pipelines on the Tofino ASIC, and that you can successfully process network traffic.
+3. Modify the translator P4 code to generate RDMA packets with correct MAC addresses for the NIC (function `ControlCraftRDMA` in file [dta_translator.p4](Translator/p4src/dta_translator.p4))
+4. **This step could prove difficult.** Modify the initial RDMA packets generated from the Translator CPU to suite your network card (in file [init_rdma_connection.py](Translator/init_rdma_connection.py)). I recommend establishing an RDMA connection to the collector NIC through the normal means (using another machine) and dumping the first few packets to use as a template.
+5. Update `--dir` value in init_rdma_connection.py and `metadata_dir` in switch.py to point to the same directory. This is where the values written into P4 M/A tables will be read from.
 
 ### DTA setup
 As previously mentioned, DTA consists of several components. You will at a minimum make sure that the translator and collector works
@@ -67,3 +68,5 @@ As previously mentioned, DTA consists of several components. You will at a minim
 3. Recommended: Set up the [Generator/](Generator/).
 4. Recommended: Set up the [Manager/](Manager/).
 5. Optional: Compile and install the DTA [Reporter/](Reporter/).
+
+## Runtime
