@@ -33,7 +33,7 @@ While the manager is not essential for DTA, it greatly simplifies tests while al
 1. A fully installed and functional Tofino switch
 2. A server equipped with a RoCEv2-capable RDMA NIC, configured and ready for RDMA workloads
 3. Optional: one additional server to act as a traffic generator
-4. Cabling between the devices according to the [testbed section](Testbed)
+4. Cabling between the devices according to the [testbed section](#Testbed)
 
 ### Testbed
 To produce the results from the paper, we had a testbed configured as follows:
