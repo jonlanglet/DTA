@@ -70,3 +70,15 @@ As previously mentioned, DTA consists of several components. You will at a minim
 5. Optional: Compile and install the DTA [Reporter/](Reporter/).
 
 ## Runtime
+Once the DTA testbed is successfully set up, running it is relatively straightforward.
+
+### Using the DTA manager (easy)
+The DTA manager automates starting DTA and performing simple tests.
+Follow the guide in [Manager/](Manager/).
+
+### Running DTA manually
+Basically, you can to manually do the tasts that the manager does automatically. If you get stuck, please refer to the manager scripts for hints.
+1. Start the [Collector/](Collector/)
+2. Start the [Translator/](Translator/)
+3. Replay DTA traffic to the translator (for example using a [traffic generator](Generator/))
+4. Analyze and print out the data structures at the collector (you should see how they are populated according to the DTA traffic intercepted by the translator).
