@@ -1,35 +1,39 @@
 # DirectTelemetryAccess
 ![Overview](Overview.png)
 
-This repository contains the code and helpful guides to set up an environment with Direct Telemetry Access.
+This repository contains the code for Direct Telemetry Access.
 
 See the sub-folders for details about setting up the various components.
 
 ## Components
 This repository consists of several components, each located within their own subdirectories.
 
+### Reporter
+[Reporter/](Reporter/) is a DTA reporter switch. 
+This switch can generate telemetry reports through DTA.
+
+### Translator
+[Translator/](Translator/) is a DTA translator switch. 
+This switch will intercept DTA reports and convert these into RDMA traffic. 
+It is in charge of establishing and managing RDMA queue-pairs with the collector server.
+
 ### Collector
 [Collector/](Collector/) contains files for the DTA collector.
-This component will reside on the collector server, and will host the memory data structures that the translator will write into.
+This component will reside on the collector server, and will host the in-memory data aggregation structures that the translator will write telemetry reports into.
 
 ### Generator
 [Generator/](Generator/) contains files for the TReX traffic generator.
 
 ### Manager
 [Manager/](Manager/) is a set of automation scripts for DTA that handles testbed setup and configuration by connecting to and running commands on the various DTA components.
-While it is not an essential component for DTA, it greatly simplifies tests while also implicitly acting as documentation for the DTA system.
-
-### Reporter
-[Reporter/](Reporter/) is a DTA reporter switch. This switch can generate telemetry reports through DTA.
-
-### Translator
-[Translator/](Translator/) is a DTA translator switch. This switch will intercept DTA reports and convert these into RDMA traffic. It is in charge of establishing and managing RDMA queue-pairs with the collector server.
+While the manager is not essential for DTA, it greatly simplifies tests while also indirectly acting as documentation for how to use the DTA system in this repository.
 
 
 ## Requirements
-1. A fully installed Tofino switch
+1. A fully installed and functional Tofino switch
 2. A server equipped with a RoCEv2-capable RDMA NIC, configured and ready for RDMA workloads
 3. Optional: one additional server to act as a traffic generator
+4. Cabling between the devices according to the [testbed section](Testbed)
 
 ### Testbed
 To produce the results from the paper, we had a testbed configured as follows:
@@ -39,7 +43,7 @@ To produce the results from the paper, we had a testbed configured as follows:
 ## HowTo
 
 ### RDMA setup on the collector server
-A working RDMA environment at the collector-server is essential in DTA.
+A working RDMA environment at the collector-server is essential for DTA.
 
 1. Make sure that your NIC supports RDMA through RoCEv2. 
 We used the NVIDIA Bluefield-2 DPU, and we can not guarantee success with other network cards. However, other RoCEv2-capable network cards where you can disable iCRC verification might work just as well.
