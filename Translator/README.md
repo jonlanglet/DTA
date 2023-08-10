@@ -7,7 +7,9 @@ Please follow the setup guide in the repository root.
 
 ## Setup
 1. Compile the Translator pipeline [here](p4src/dta_translator.p4)
-2. ...
+2. Update the port mapping in switch_cpu.py to match your cabling
+3. Update the initial RDMA packets in init_rdma_connection.py
+4. ...
 
 ## Runtime
 1. Launch the compiled pipeline on the Tofino ASIC
