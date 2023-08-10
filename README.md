@@ -3,6 +3,9 @@
 
 This repository contains the code for Direct Telemetry Access.
 
+**The guides in this repository are in an early stage.**
+Feel free to contact me (Jonatan) if you run into issues while following these and I will help out best I can.
+
 See the sub-folders for details about setting up the various components.
 
 ## Components
