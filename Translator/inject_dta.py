@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+#Written by Jonatan Langlet for Direct Telemetry Access
+#Used to inject synthetic DTA reports into the translator. Too slow for benchmarking, but good for testing translation capabilities
 
 #from scapy.all import send, IP, ICMP
 from scapy.all import *

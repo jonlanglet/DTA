@@ -1,7 +1,7 @@
 /*
  * 
  * P4_16 for Tofino ASIC
- * Written Aug- 2021 for Direct Telemetry Access
+ * Written by Jonatan Langlet for Direct Telemetry Access
  * Translator pipeline
  * 
  */
@@ -72,8 +72,8 @@ typedef bit<64> keyincrement_counter_t; //Counter in keyincrement
 //To change batch size: 
 //INFO: ensure that the number of batched elements is a power of 2
 //1. Update values here
-//2. update in append rdma payload header (automatic)
-//3. modify register handling in batch control block (automatic)
+//2. Update in append rdma payload header (automatic)
+//3. Modify register handling in batch control block (automatic)
 #ifndef APPEND_BATCH_SIZE
 	//#define APPEND_BATCH_SIZE 16 //This has to be NUM_APPEND_ENTRIES_IN_REGISTERS+1. Also make sure it's a power of 2, otherwise does not handle ring buffer rollover
 	//#define NUM_APPEND_ENTRIES_IN_REGISTERS 15 //This should be batchsize-1. This is how many we use registers to store in-pipeline
@@ -111,12 +111,12 @@ typedef bit<32> drop_counter_t; //This is used to halt QP traffic during resync
 #ifndef QP_RESYNC_PACKET_DROP_NUM
 	//#define QP_RESYNC_PACKET_DROP_NUM 10000000 //10M
 	//#define QP_RESYNC_PACKET_DROP_NUM 1000000 //1M
-	#define QP_RESYNC_PACKET_DROP_NUM 100000 //100K
+	#define QP_RESYNC_PACKET_DROP_NUM 100000 //100K (proved stable in our tests)
 	//#define QP_RESYNC_PACKET_DROP_NUM 50000 //50K
 	//#define QP_RESYNC_PACKET_DROP_NUM 10000 //10K (system dies)
 #endif
 
-//#define DISABLE_CONGESTION_HANDLING //Defining this one will drop congestion acks in Ingress, preventing PSN resync
+//#define DISABLE_CONGESTION_HANDLING //Defining this one will drop RDMA congestion acks in Ingress, preventing PSN resync
 
 typedef bit<8> dta_seqnum_t;
 
@@ -692,7 +692,7 @@ control ControlAppendBatchHandling(inout headers hdr, inout ingress_metadata_t i
 		else //Batch is not yet built
 		{
 			ig_md.batch_ready = 0;
-			//ig_md.batch_ready = 1; //Used while benchmarking append batching performance. Egress POV sees 16-fold increase in data
+			//ig_md.batch_ready = 1; //Used while benchmarking append batching performance. Egress POV sees 16-fold increase in data (if max batching)
 		}
 		
 		
@@ -776,7 +776,7 @@ control ControlProcessDTAPacket(inout headers hdr, inout ingress_metadata_t ig_m
 		RegisterAction<dta_seqnum_t, bit<16>, dta_seqnum_t>(reg_nack_tracker) proc_nack_tracker = {
 			void apply(inout dta_seqnum_t seqnum, out dta_seqnum_t output)
 			{
-				//TODO: only increment when the header-held value is correct! 
+				//only increment when the header-held value is correct! 
 				if( seqnum == hdr.dta_base.seqnum-1 ) //The incoming sequence number is valid :)
 					seqnum = seqnum + 1;
 				
@@ -846,7 +846,7 @@ control ControlProcessDTAPacket(inout headers hdr, inout ingress_metadata_t ig_m
 		hdr.udp.dstPort = DTA_ACK_PORT_NUMBER; //Signal that this is a DTA ack
 		
 		hdr.dta_ack.seqnum = ig_md.prev_reporter_seqnum; //Send the previous ACK (expected one -1) as response.
-		hdr.dta_ack.nack = 1; //This is a NACK :)
+		hdr.dta_ack.nack = 1; //This is a DTA NACK :)
 	}
 	#endif
 	
@@ -1215,7 +1215,7 @@ control ControlPrepareAppend(inout headers hdr, inout egress_metadata_t eg_md)
 		}
 	};
 	
-	//TODO: re-merge tables. No need anymore
+	//TODO: re-merge tables. No need anymore to split them
 	//Assuming that dstIP is already correct towards the right list collector
 	action set_server_info_1(remote_key_t remote_key, queue_pair_t queue_pair, memory_address_t memory_address_start)
 	{
@@ -1393,7 +1393,7 @@ control ControlPrepareKeyWrite(inout headers hdr, inout egress_metadata_t eg_md)
 	apply
 	{
 		//TODO: make this iterate over N! One for each packet in egress
-		eg_md.redundancy_entry_num = get_redundancy_number.execute(0);; //retrieve n
+		eg_md.redundancy_entry_num = get_redundancy_number.execute(0); //retrieve n
 		
 		//Map the IP into collector metadata
 		tbl_getCollectorMetadataFromIP.apply();
@@ -1516,7 +1516,7 @@ control ControlPreparePostcarder(inout headers hdr, inout egress_metadata_t eg_m
 	ControlPostcarder_cache(0x36518f0d, 4) cache_hop4;
 	ControlPostcarder_cache(0x7a40a908, 5) cache_hop5;
 	
-	//TODO: make one of these use a custom polynomial
+	//TODO: make one of these use a custom polynomial (for independence)
 	Hash<postcarder_cache_index_t>(HashAlgorithm_t.CRC32) hash_cache_index;
 	Hash<memory_slot_t>(HashAlgorithm_t.CRC32) hash_memory_slot;
 	
@@ -1625,7 +1625,7 @@ control ControlPreparePostcarder(inout headers hdr, inout egress_metadata_t eg_m
 		
 		//Currently hard-coded cache counter to 5 postcards
 		//TODO: make this stated in postcards themselves?
-		//Shorter ones will report when they get evicted
+		//Shorter ones will report when they get evicted from cache (will happen eventually given enough traffic)
 		if(eg_md.cache_counter == 5)
 		{
 			eg_md.postcarder_ready_for_compile = 1; //Signal that we got all postcards

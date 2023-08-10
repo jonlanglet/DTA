@@ -1,3 +1,5 @@
+#This is the switch-local controller for the DTA translator
+#Written by Jonatan Langlet for Direct Telemetry Access
 import datetime
 import ipaddress
 import hashlib

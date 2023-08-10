@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+#Written by Jonatan Langlet for Direct Telemetry Access
+#Hard-coded magic numbers in here need to be verified if used with another NIC
 
 #from scapy.all import send, IP, ICMP
 from scapy.all import *
