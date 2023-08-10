@@ -5,4 +5,4 @@ TRex either send traffic towards the reporter (so that the reporter generates DT
 
 Download and install TRex according to their guide [here](https://trex-tgn.cisco.com/trex/doc/trex_manual.html#_download_and_installation) 
 
-In this directory, you can find the scripts used to define the DTA traffic
+In this directory, you can find the scripts used to define the DTA traffic that the generator will emit
