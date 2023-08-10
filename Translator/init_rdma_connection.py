@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
-#Written by Jonatan Langlet for Direct Telemetry Access
-#Hard-coded magic numbers in here need to be verified if used with another NIC
+# Written by Jonatan Langlet for Direct Telemetry Access
+#
+# Notes for those who are here to modify the file:
+#
+# Hard-coded magic numbers in here need to be verified if used with another NIC
+# What I did originally was establish a normal RDMA connection between two NICs and sniffed this connection to figure out the packet contents
+# You can not just tcpdump this though (since RDMA packets are handled at the NIC without entering the host machine), so you need to dump this in-transit. I used the Tofino to mirror packets to CPU (but any middlebox should work).
+# These values worked for my Mellanox Bluefield-2 DPU. You need to at least update the destination MAC address if you use another BF2 (here and in P4) (and likely more if you use another Mellanox NIC, and tons if you use non-mellanox).
+#
+# I wish you luck.
 
 #from scapy.all import send, IP, ICMP
 from scapy.all import *
