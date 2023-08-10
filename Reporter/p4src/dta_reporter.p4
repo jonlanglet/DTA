@@ -1,7 +1,7 @@
 /*
  * 
  * P4_16 for Tofino ASIC
- * Written Aug- 2021 for Direct Telemetry Access
+ * Written by Jonatan Langlet for Direct Telemetry Access
  * Reporter pipeline
  * 
  */
@@ -490,7 +490,7 @@ parser SwitchEgressParser(packet_in pkt, out headers hdr, out egress_metadata_t 
 }
 
 /*
- * This control block is processing the report packet (crafting RDMA)
+ * This control block is processing the report packet (crafting DTA)
  */
 control ControlReporting(inout headers hdr, inout egress_metadata_t eg_md)
 {
