@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#This script manages the entire DTA system
+#This script manages the entire DTA system. This is the script you want to run.
 
 import time
 

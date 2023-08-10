@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#This script prepares and launches the translator pipeline on the Tofino switch
+#This contains various helper functions
 
 import pexpect
 import time

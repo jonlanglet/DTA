@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#This script contains the Machine class, with various functions shared between the components
 import time
 import pexpect
 
