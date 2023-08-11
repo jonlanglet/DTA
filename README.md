@@ -81,7 +81,7 @@ The DTA manager automates starting DTA and performing simple tests.
 Follow the guide in [Manager/](Manager/).
 
 ### Running DTA manually
-Basically, you can to manually do the tasts that the manager does automatically. If you get stuck, please refer to the manager scripts for hints.
+Basically, you can manually do the tasks that the manager does automatically. If you get stuck, please refer to the manager scripts for hints.
 1. Start the [Collector/](Collector/)
 2. Start the [Translator/](Translator/)
 3. Replay DTA traffic to the translator (for example using a [traffic generator](Generator/))
