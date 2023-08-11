@@ -3,6 +3,8 @@
 
 This repository contains the code for Direct Telemetry Access.
 
+An open-access version of our paper is available [here](https://arxiv.org/abs/2202.02270).
+
 **The guides in this repository are in an early stage.**
 
 See the sub-folders for details about setting up the various components.
