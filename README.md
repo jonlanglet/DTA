@@ -67,11 +67,11 @@ Our DTA prototype is written for the Tofino-1 ASIC, specifically SDE version 9.7
 ### DTA setup
 As previously mentioned, DTA consists of several components. You will at a minimum make sure that the translator and collector works
 
-1. Essential: Compile and install the DTA [Translator/](Translator/).
-2. Essential: Compile and install the DTA [Collector/](Collector/).
-3. Recommended: Set up the [Generator/](Generator/).
-4. Recommended: Set up the [Manager/](Manager/).
-5. Optional: Compile and install the DTA [Reporter/](Reporter/).
+1. Essential: Compile and install the DTA [Translator](Translator/).
+2. Essential: Compile and install the DTA [Collector](Collector/).
+3. Recommended: Set up the [Generator](Generator/).
+4. Recommended: Set up the [Manager](Manager/).
+5. Optional: Compile and install the DTA [Reporter](Reporter/).
 
 ## Runtime
 Once the DTA testbed is successfully set up, running it is relatively straightforward.
@@ -82,7 +82,7 @@ Follow the guide in [Manager/](Manager/).
 
 ### Running DTA manually
 Basically, you can manually do the tasks that the manager does automatically. If you get stuck, please refer to the manager scripts for hints.
-1. Start the [Collector/](Collector/)
-2. Start the [Translator/](Translator/)
+1. Start the [Collector](Collector/)
+2. Start the [Translator](Translator/)
 3. Replay DTA traffic to the translator (for example using a [traffic generator](Generator/))
 4. Analyze and print out the data structures at the collector (you should see how they are populated according to the DTA traffic intercepted by the translator).
