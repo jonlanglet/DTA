@@ -88,7 +88,7 @@ Basically, you can manually do the tasks that the manager does automatically. If
 4. Analyze and print out the data structures at the collector (you should see how they are populated according to the DTA traffic intercepted by the translator).
 
 ## Integrating DTA into your telemetry data flow
-The code in this repository is used to demonstrate how DTA could be used, and enabled evaluating its performance in a few example telemetry scenarios.
+The code in this repository was used to demonstrate how DTA works, and was used to test DTA in example telemetry scenarios.
 
 Please feel free to integrate DTA into your telemetry data flows to benefit from improved collection performance.
 For this, you need to update the telemetry-generating devices (reporters) to generate its telemetry reports with DTA headers (see [Reporter/](Reporter/) for an example).
