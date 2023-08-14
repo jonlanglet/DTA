@@ -73,7 +73,7 @@ As previously mentioned, DTA consists of several components. You will at a minim
 4. Recommended: Set up the [Manager](Manager/).
 5. Optional: Compile and install the DTA [Reporter](Reporter/).
 
-## Runtime
+## Running DTA
 Once the DTA testbed is successfully set up, running it is relatively straightforward. We provide a set of automation scripts that could be useful, as well as a brief guide on how to do it manually.
 
 ### Using the DTA manager (automated)
@@ -86,3 +86,13 @@ Basically, you can manually do the tasks that the manager does automatically. If
 2. Start the [Translator](Translator/)
 3. Replay DTA traffic to the translator (for example using a [traffic generator](Generator/))
 4. Analyze and print out the data structures at the collector (you should see how they are populated according to the DTA traffic intercepted by the translator).
+
+## Integrating DTA into your telemetry data flow
+The code in this repository is used to demonstrate how DTA could be used, and enabled evaluating its performance in a few example telemetry scenarios.
+
+Please feel free to integrate DTA into your telemetry data flows to benefit from improved collection performance.
+For this, you need to update the telemetry-generating devices (reporters) to generate its telemetry reports with DTA headers (see [Reporter/](Reporter/) for an example).
+Additionally, you need to update your centralized collector(s) to register the telemetry-storing data structures with RDMA to allow the translator(s) to access these regions (see [Collector/](Collector/) for an example).
+
+It is also possible to craft new DTA primitives to better fit the specifics of your telemetry system. 
+This could be a challenging process, but you can use our already implemented primitives as a reference on how to do this.
