@@ -53,15 +53,15 @@ A working RDMA environment at the collector-server is essential for DTA.
 
 1. Make sure that your NIC supports RDMA through RoCEv2. We used the NVIDIA Bluefield-2 DPU, and we can not guarantee success with other network cards. However, other RoCEv2-capable network cards where you can disable iCRC verification might work just as well.
 2. Install and configure the necessary software and drivers for RDMA workloads, following guides provided by the NIC manufacturer.
-3. Verify that the RDMA setup is valid. This can be done by connecting two servers together with RDMA-capable NICs for example through `ib_send_bw`.
+3. Verify that the RDMA setup works. This can be done for example by connecting two RDMA-capable NICs together, and using the `ib_send_bw` utility.
 
 ### Tofino setup
-Our DTA prototype is written for the Tofino-1 ASIC, specifically SDE version 9.7. Newer SDE versions are likely to work as well (possibly with minor tweaks to the translator code)
+Our DTA prototype is written for the Tofino-1 ASIC, specifically running SDE version 9.7. Newer SDE versions most likely to work just as well (possibly with minor tweaks to the translator code)
 
-1. Install the SDE and BSP according to the official documentation.
+1. Install the SDE and BSP according to official documentation from Intel and the board manufacturer.
 2. Verify that you can compile and launch P4 pipelines on the Tofino ASIC, and that you can successfully process network traffic.
 3. Modify the translator P4 code to generate RDMA packets with correct MAC addresses for the NIC (function `ControlCraftRDMA` in file [dta_translator.p4](Translator/p4src/dta_translator.p4))
-4. **This step could prove difficult.** Modify the initial RDMA packets generated from the Translator CPU to be compatible with your network card (in file [init_rdma_connection.py](Translator/init_rdma_connection.py)). I recommend establishing an RDMA connection to the collector NIC through the normal means (using another machine) and dumping the first few packets to use as a template on how to establish an RDMA queue-pair. The current packets establish a queue-pair with our specific Mellanox Bluefield-2 DPU.
+4. **This step could prove difficult.** Modify the initial RDMA packets generated from the Translator CPU to be compatible with your network card (in file [init_rdma_connection.py](Translator/init_rdma_connection.py)), so that is can successfully establish new RDMA connections. I recommend establishing an RDMA connection to the collector NIC through normal means (using another machine) and dumping the first few packets to use as a template on how to establish an RDMA queue-pair. The current packets establish a queue-pair with our specific Mellanox Bluefield-2 DPU.
 5. Update `--dir` value in init_rdma_connection.py and `metadata_dir` in switch.py to point to the same directory. This is where the values written into P4 M/A tables will be read from.
 
 ### DTA setup
@@ -74,9 +74,9 @@ As previously mentioned, DTA consists of several components. You will at a minim
 5. Optional: Compile and install the DTA [Reporter](Reporter/).
 
 ## Runtime
-Once the DTA testbed is successfully set up, running it is relatively straightforward.
+Once the DTA testbed is successfully set up, running it is relatively straightforward. We provide a set of automation scripts that could be useful, as well as a brief guide on how to do it manually.
 
-### Using the DTA manager (easy)
+### Using the DTA manager (automated)
 The DTA manager automates starting DTA and performing simple tests.
 Follow the guide in [Manager/](Manager/).
 
