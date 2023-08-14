@@ -88,10 +88,9 @@ Basically, you can manually do the tasks that the manager does automatically. If
 4. Analyze and print out the data structures at the collector (you should see how they are populated according to the DTA traffic intercepted by the translator).
 
 ## Integrating DTA into your telemetry system
-The code in this repository was used to demonstrate how DTA works, and was used to test DTA in example telemetry scenarios.
+Integrate DTA into your telemetry data flows to benefit from improved collection performance.
 
-Please feel free to integrate DTA into your telemetry data flows to benefit from improved collection performance.
-For this, you need to update the telemetry-generating devices (reporters) to generate its telemetry reports with DTA headers (see [Reporter/](Reporter/) for an example).
+You need to update the telemetry-generating devices (reporters) to generate their telemetry reports with DTA headers (see [Reporter/](Reporter/) for an example).
 Additionally, you need to update your centralized collector(s) to register the telemetry-storing data structures with RDMA to allow the translator(s) to access these regions (see [Collector/](Collector/) for an example).
 
 It is also possible to craft new DTA primitives to better fit the specifics of your telemetry system. 
