@@ -1,5 +1,12 @@
 # DTA - Reporter
-This directory contains code for the Reporter component of DTA.
+This directory contains an example telemetry-capable switch, generating reports for a DTA collector.
+
+The reporter presented here generates telemetry postcards containing placeholder data, to be queryable in a key/value storage using the source IP address.
+
+A new report is generated either through a switch-local change-detection system, as well as for random packets.
+
+The Ingress pipe does change detection and triggers generation of a new packet (to be used for report-creation).
+The Egress pipe transforms report-packets into DTA reports.
 
 ## Prerequisites
 You need a Tofino switch, fully installed and operational.
