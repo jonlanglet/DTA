@@ -5,12 +5,12 @@ The reporter presented here generates telemetry postcards containing placeholder
 
 A new report is generated either through a switch-local change-detection system, as well as for random packets.
 
-The Ingress pipe does change detection and triggers generation of a new packet (to be used for report-creation).
-The Egress pipe transforms report-packets into DTA reports.
+Ingress does change detection and triggers generation of a new packet (to be used for report-creation).
+Egress transforms report-packets into DTA reports.
 
 ## Prerequisites
 You need a Tofino switch, fully installed and operational.
-We used the Barefoot SDE 9.xx during development and evaluation.
+We used the Barefoot SDE 9.7 during development and evaluation.
 
 ## Setup
 1. Compile the Reporter pipeline [here](p4src/dta_reporter.p4)
