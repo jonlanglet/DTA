@@ -9,7 +9,7 @@ An open-access version of our paper is available [here](https://arxiv.org/abs/22
 
 See the sub-folders for details about setting up the various components.
 
-## Component Overview
+## Overview of Components
 DTA is a system consisting of several components, each in their own directories.
 
 ### Reporter
