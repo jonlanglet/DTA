@@ -9,8 +9,8 @@ An open-access version of our paper is available [here](https://arxiv.org/abs/22
 
 See the sub-folders for details about setting up the various components.
 
-## Components
-This repository consists of several components, each located within their own subdirectories.
+## Component Overview
+DTA is a system consisting of several components, each in their own directories.
 
 ### Reporter
 [Reporter/](Reporter/) is a DTA reporter switch. 
