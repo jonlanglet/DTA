@@ -3,6 +3,7 @@
 
 This repository contains the code for Direct Telemetry Access.
 
+Direct Telemetry Access is a peer-reviewed system for high-speed telemetry collection presented at ACM SIGCOMM'23.
 An open-access version of our paper is available [here](https://arxiv.org/abs/2202.02270).
 
 **The guides in this repository are in an early stage.**
