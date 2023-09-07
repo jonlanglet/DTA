@@ -105,7 +105,7 @@ This could be a challenging process, but you can use our already implemented pri
 Please cite our work as follows:
 
 ```
-@inproceedings{10.1145/3603269.3604827,
+@inproceedings{langlet2023DTA,
 	author = {Langlet, Jonatan and Ben Basat, Ran and Oliaro, Gabriele and Mitzenmacher, Michael and Yu, Minlan and Antichi, Gianni},
 	title = {Direct Telemetry Access},
 	year = {2023},
