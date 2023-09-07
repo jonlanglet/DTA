@@ -4,7 +4,8 @@
 This repository contains the code for Direct Telemetry Access.
 
 Direct Telemetry Access is a peer-reviewed system for high-speed telemetry collection presented at ACM SIGCOMM'23.
-An open-access version of our paper is available [here](https://arxiv.org/abs/2202.02270).
+
+The paper is available here: [ACM](https://dl.acm.org/doi/10.1145/3603269.3604827) / [arXiv](https://arxiv.org/abs/2202.02270).
 
 **The guides in this repository are in an early stage.**
 
@@ -98,3 +99,26 @@ Additionally, you need to update your centralized collector(s) to register the t
 
 It is also possible to craft new DTA primitives to better fit the specifics of your telemetry system. 
 This could be a challenging process, but you can use our already implemented primitives as a reference on how to do this.
+
+
+## Cite As
+Please cite our work as follows:
+
+```
+@inproceedings{10.1145/3603269.3604827,
+	author = {Langlet, Jonatan and Ben Basat, Ran and Oliaro, Gabriele and Mitzenmacher, Michael and Yu, Minlan and Antichi, Gianni},
+	title = {Direct Telemetry Access},
+	year = {2023},
+	isbn = {9798400702365},
+	publisher = {Association for Computing Machinery},
+	address = {New York, NY, USA},
+	url = {https://doi.org/10.1145/3603269.3604827},
+	doi = {10.1145/3603269.3604827},
+	booktitle = {Proceedings of the ACM SIGCOMM 2023 Conference},
+	pages = {832–849},
+	numpages = {18},
+	keywords = {monitoring, telemetry collection, remote direct memory access},
+	location = {New York, NY, USA},
+	series = {ACM SIGCOMM '23}
+}
+```
