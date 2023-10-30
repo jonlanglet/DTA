@@ -66,7 +66,7 @@ Our DTA prototype is written for the Tofino-1 ASIC, specifically running SDE ver
 2. Verify that you can compile and launch P4 pipelines on the Tofino ASIC, and that you can successfully process network traffic.
 3. Modify the translator P4 code to generate RDMA packets with correct MAC addresses for the NIC (function `ControlCraftRDMA` in file [dta_translator.p4](Translator/p4src/dta_translator.p4))
 4. **This step could prove difficult.** Modify the initial RDMA packets generated from the Translator CPU to be compatible with your network card (in file [init_rdma_connection.py](Translator/init_rdma_connection.py)), so that is can successfully establish new RDMA connections. I recommend establishing an RDMA connection to the collector NIC through normal means (using another machine) and dumping the first few packets to use as a template on how to establish an RDMA queue-pair. The current packets establish a queue-pair with our specific Mellanox Bluefield-2 DPU.
-5. Update `--dir` value in init_rdma_connection.py and `metadata_dir` in switch.py to point to the same directory. This is where the values written into P4 M/A tables will be read from.
+5. Update `--dir` value in init_rdma_connection.py and `metadata_dir` in switch.py to point to the same directory. This is where the RDMA metadata values (parsed from responses during the RDMA connection phase) are written. These values are later used to populate P4 M/A tables, required for generation of connection-specific RDMA packets from within the data plane
 
 ### DTA setup
 As previously mentioned, DTA consists of several components. You will at a minimum make sure that the translator and collector works
