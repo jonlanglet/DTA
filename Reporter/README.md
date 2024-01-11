@@ -3,7 +3,7 @@ This is an example telemetry-generating switch with DTA support.
 
 The reporter presented here generates telemetry postcards containing placeholder data, to be queryable in a key/value storage using the source IP address as key.
 
-Generationg of a report is triggered both through change-detection, and for random packets even when a change is not detected.
+Generation of a report is triggered both through change-detection, and for random packets even when a change is not detected.
 
 Ingress performs change detection and triggers generation of a new packet (to be used for report-creation).
 Egress transforms report-packets into DTA reports.
