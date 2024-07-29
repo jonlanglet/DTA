@@ -124,5 +124,6 @@ Please cite our work as follows:
 ```
 
 ## Need Help?
-If you have problems installing or configuring DTA in your testbed, contact [Jonatan Langlet](https://langlet.io/) ( `jonatan at langlet.io` )
+If you encounter any issues with installing or configuring DTA, please reach out to [Jonatan Langlet](https://langlet.io/) at `jonatan at langlet.io`.
 
+I am also open to collaborations on DTA-adjacent research!
