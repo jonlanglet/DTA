@@ -10,9 +10,6 @@ The paper is available here: [ACM](https://dl.acm.org/doi/10.1145/3603269.360482
 **The guides in this repository are in an early stage.**
 
 
-[![DOI](https://zenodo.org/badge/650100889.svg)](https://zenodo.org/badge/latestdoi/650100889)
-
-
 ## Overview of Components
 DTA is a system consisting of several components, each in their own directories.
 
