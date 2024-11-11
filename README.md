@@ -123,7 +123,9 @@ Please cite our work as follows:
 ```
 
 ## Need Help?
-This repository is purely a prototype, demonstrating the capabilities of DTA. However, the installation is not streamlined.
+This repository is a prototype to demonstrate the capabilities and feasibility of DTA. 
+However, the installation is not streamlined.
+
 If you get stuck, please reach out to [me](https://langlet.io/) at `jonatan at langlet.io` and I will help out best I can.
 
 I am also open to collaborations on DTA-adjacent research.
