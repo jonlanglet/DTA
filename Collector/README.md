@@ -2,9 +2,12 @@
 This directory contains code for the Collector component of DTA.
 
 ## Prerequisites
-You need a server equipped with an RDMA-capable network card, supporting RoCEv2. 
-The network card needs to be fully installed and ready for RDMA workloads.
-We used a Mellanox Bluefield 2 DPU during development and evaluation.
+- A server equipped with an RDMA-capable rNIC, supporting RoCEv2.
+- Installed, configured, and verified RDMA drivers ready work workloads.
+- **Preferably** a direct link between the Translator-switch and the rNIC.
+
+Please verify that the RDMA setup works before proceeding with the DTA installation. 
+This can be done for example by connecting two RDMA-capable NICs, and using the `ib_send_bw` utility.
 
 ## Setup
 1. Compile the collector `gcc -o collector collector.cpp -lrdmacm -libverbs -lstdc++`

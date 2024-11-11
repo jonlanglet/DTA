@@ -3,12 +3,9 @@
 
 This repository contains the code for Direct Telemetry Access.
 
-Direct Telemetry Access is a peer-reviewed system for high-speed telemetry collection presented at ACM SIGCOMM'23.
+Direct Telemetry Access is a peer-reviewed system for high-speed telemetry collection, capable of line-rate report ingestion.
 
-The paper is available here: [ACM](https://dl.acm.org/doi/10.1145/3603269.3604827) / [arXiv](https://arxiv.org/abs/2202.02270).
-
-**The guides in this repository are in an early stage.**
-
+The paper is available here: [ACM SIGCOMM](https://dl.acm.org/doi/10.1145/3603269.3604827) / [arXiv](https://arxiv.org/abs/2202.02270).
 
 ## Overview of Components
 DTA is a system consisting of several components, each in their own directories.
@@ -35,29 +32,42 @@ While the manager is not essential for DTA, it greatly simplifies tests while al
 
 
 ## Requirements
-1. A fully installed and functional Tofino switch
-2. A server equipped with a RoCEv2-capable RDMA NIC, configured and ready for RDMA workloads
-3. Optional: one additional server to act as a traffic generator
-4. Cabling between the devices according to the [testbed section](#testbed)
+1. A fully installed and functional Tofino switch.
+2. A server equipped with a RoCEv2-capable RDMA NIC, configured and ready for RDMA workloads.
+3. Optional: one additional server to act as a traffic generator.
+4. Cabling between the devices.
+
+### NICs
+DTA likely works with most RoCEv2-capable rNICs where you can disable iCRC verification.
+
+It is so far confirmed to work with the following rNICs:
+- ConnectX-6
+- Bluefield-2 DPU (we used this)
+
+Please let me know if you have tried other NICs, and I will update the list.
 
 ### Testbed
-To produce the results from the paper, we had a testbed configured as follows:
+Our development/evaluation testbed was set up as follows:
 
 ![Testbed](Testbed.png)
 
-## Initial setup
-**The initial set up of DTA can be cumbersome.**
-Please try to follow these steps best you can, and reach out to me (Jonatan) if the guides prove insufficient.
+If you change the cabling, update the [Translator](Translator/) accordingly.
 
-### RDMA setup on the collector server
-A working RDMA environment at the collector-server is essential for DTA.
+## Installation
+**The installation is complex. Make sure that you understand the components and workflow.**
 
-1. Make sure that your NIC supports RDMA through RoCEv2. We used the NVIDIA Bluefield-2 DPU, and we can not guarantee success with other network cards. However, other RoCEv2-capable network cards where you can disable iCRC verification might work just as well.
-2. Install and configure the necessary software and drivers for RDMA workloads, following guides provided by the NIC manufacturer.
-3. Verify that the RDMA setup works. This can be done for example by connecting two RDMA-capable NICs together, and using the `ib_send_bw` utility.
+As previously mentioned, DTA consists of several components. A working translator and collector are the base essentials.
+Please refer to the individual component directoried for installation guides and tips.
+
+1. Install the DTA [Collector](Collector/) **Essential**
+2. Install the DTA [Translator](Translator/) **Essential**
+3. Set up the traffic [Generator](Generator/) (Optional)
+4. Set up the DTA [Manager](Manager/) (Optional)
+5. Compile and install the DTA [Reporter](Reporter/) (Optional)
 
 ### Tofino setup
-Our DTA prototype is written for the Tofino-1 ASIC, specifically running SDE version 9.7. Newer SDE versions most likely to work just as well (possibly with minor tweaks to the translator code)
+Our DTA prototype is written for the Tofino-1 ASIC, specifically running SDE version 9.7. 
+Newer SDE versions most likely to work just as well (possibly with minor tweaks to the translator code)
 
 1. Install the SDE and BSP according to official documentation from Intel and the board manufacturer.
 2. Verify that you can compile and launch P4 pipelines on the Tofino ASIC, and that you can successfully process network traffic.
@@ -66,15 +76,6 @@ Our DTA prototype is written for the Tofino-1 ASIC, specifically running SDE ver
 5. Update `--dir` value in init_rdma_connection.py and `metadata_dir` in switch.py to point to the same directory. This is where the RDMA metadata values (parsed from responses during the RDMA connection phase) are written. These values are later used to populate P4 M/A tables, required for generation of connection-specific RDMA packets from within the data plane
 
 See [Translator/](Translator/) for more information.
-
-### DTA setup
-As previously mentioned, DTA consists of several components. You will at a minimum make sure that the translator and collector works
-
-1. Essential: Compile and install the DTA [Translator](Translator/).
-2. Essential: Compile and install the DTA [Collector](Collector/).
-3. Recommended: Set up the [Generator](Generator/).
-4. Recommended: Set up the [Manager](Manager/).
-5. Optional: Compile and install the DTA [Reporter](Reporter/).
 
 ## Running DTA
 Once the DTA testbed is successfully set up, running it is relatively straightforward. We provide a set of automation scripts that could be useful, as well as a brief guide on how to do it manually.
@@ -126,6 +127,6 @@ Please cite our work as follows:
 This repository is a prototype to demonstrate the capabilities and feasibility of DTA. 
 However, the installation is not streamlined.
 
-If you get stuck, please reach out to [me](https://langlet.io/) at `jonatan at langlet.io` and I will help out best I can.
+If you get stuck, please reach out to [Jonatan Langlet](https://langlet.io/) at `jonatan at langlet.io` and I will help out best I can.
 
 I am also open to collaborations on DTA-adjacent research.
