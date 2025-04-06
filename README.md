@@ -5,7 +5,7 @@ This repository contains the code for Direct Telemetry Access.
 
 Direct Telemetry Access is a peer-reviewed system for high-speed telemetry collection, capable of line-rate report ingestion.
 
-The paper is available here: [ACM SIGCOMM](https://dl.acm.org/doi/10.1145/3603269.3604827) / [arXiv](https://arxiv.org/abs/2202.02270).
+The paper is available here: [ACM SIGCOMM](https://dl.acm.org/doi/10.1145/3603269.3604827) / [arXiv](https://arxiv.org/abs/2202.02270) / [langlet.io](https://langlet.io/assets/papers/DTA_SIGCOMM.pdf).
 
 ## Overview of Components
 DTA is a system consisting of several components, each in their own directories.
